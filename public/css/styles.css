@@ -1,0 +1,425 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.bolder {
+    font-weight: bold;
+}
+
+.numberbox {
+    width: 80px;
+}
+
+.error-message {
+    color: rgb(255, 0, 0);
+    font-size: 10px;
+    margin-bottom: 10px;
+}
+
+.flex-container{
+    display: flex;
+}
+
+.inputloginregister {
+    width: 400px;
+    height: 35px;
+    margin-bottom: 10px;
+}
+
+select {
+    width: 300px;
+    height: 30px;
+}
+
+/*login register page*/
+.loginregister {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    background-color: aliceblue;
+}
+
+.loginform {
+    background-color: #ffffff;
+    width: 500px;
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(0, 0, 0);
+    border-radius: 5px;
+}
+
+.submitbutton {
+    background-color: rgb(5, 76, 128);
+    color: #ffffff;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+/*sidebar*/
+.sidebar {
+    width: 200px;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(8, 73, 129, 255);
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.logoimg {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.sidebarhead {
+    text-align: center;
+}
+
+.welcometxt {
+    margin-top: 10px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.sidebar ul {
+    padding: 0;
+    margin: 15px;
+}
+
+.sidebar ul li {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.topmenu {
+    margin-top: -10px;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    z-index: 1;
+    font-size: 19px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.content {
+    flex: 1;
+    margin-left: 200px;
+    padding: 20px;
+}
+
+.btmpage {
+    margin-top: 10px;
+}
+
+/*add project page*/
+.mainform {
+    display: flex;
+    justify-content: center;
+    font-size: 17px;
+}
+
+.mainformm {
+    background: #ffffff;
+    width: auto;
+    padding: 20px;
+    border: 1px solid rgb(211, 211, 211);
+    border-radius: 5px;
+}
+
+.nextcolumn {
+    display: flex;
+}
+
+.input-block {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.input-block2 {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-left: 50px;
+}
+
+.inputbox {
+    width: 400px;
+    height: 40px;
+    overflow-y: hidden;
+}
+
+.textarea {
+    width: 850px;
+    height: 80px;
+}
+
+.select1 {
+    width: 400px;
+    height: 40px;
+}
+
+.newprojectnotif {
+    margin-top: 5px;
+}
+
+/*add access page*/
+
+.form-kantong {
+    text-align: center;
+    border: black 1px solid;
+}
+
+.input-block4 {
+    padding-top: 5px;
+}
+
+.labelacc {
+    width: 200px;
+}
+
+.labelacc2 {
+    width: 135px;
+}
+
+.accform {
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.accformm {
+    background: #ffffff;
+    width: auto;
+    padding: 20px;
+    border: 1px solid rgb(211, 211, 211);
+    border-radius: 5px;
+}
+
+.acc-select-box {
+    width: 150px;
+}
+
+.remove-access {
+    background-color: rgb(165, 0, 0);
+    color: #ffffff;
+    margin-top: 5px;
+    font-size: 15px;
+}
+
+.content-end {
+    text-align: end;
+}
+
+.addaccproperty {
+    text-align: center;
+}
+
+.addaccessbtn {
+    width: 45px;
+    font-size: 15px;
+}
+
+.acc-top {
+    text-align: center;
+}
+
+.kantong-name {
+    margin-bottom: 10px;
+}
+
+/*add kantong blade*/
+.addkantongparkir {
+    text-align: center;
+}
+
+.deletebtn {
+    background-color: rgb(165, 0, 0);
+    color: #ffffff;
+    width: 30px;
+    font-size: 15px;
+}
+
+/*add item blade*/
+.item1 {
+    margin-top: 5px;
+    width: 310px;
+}
+
+.iteminput {
+    width: 35px;
+}
+
+.itemkantongform {
+    border: 1px solid rgb(78, 78, 78);
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.itemform {
+    border: 1px solid #757575;
+    border-radius: 0;
+    background-color: #ffffff;
+    width: max-content;
+    font-size: 10px;
+}
+
+.kantong-item {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.itemheader {
+    text-align: center;
+    background-color: #fffd7a;
+    margin-bottom: 5px;
+}
+
+.displayaccess {
+    margin: 5px 5px 5px 5px;
+    border: 1px solid #757575;
+}
+
+.topproject {
+    text-align: center;
+    background-color: rgb(5, 76, 128);
+    color: #ffffff;
+    font-size: 25px;
+}
+
+.item-form-content {
+    display: flex;
+}
+
+.judulkantongitem {
+    font-size: 20px;
+}
+
+.remove-item {
+    background-color: rgb(165, 0, 0);
+    color: #ffffff;
+}
+
+.itembutton {
+    background-color: rgb(5, 76, 128);
+    color: #ffffff;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 130px;
+    margin-bottom: 10px;
+}
+
+.formrambu {
+    border: 1px solid #757575;
+    width: max-content;
+    margin-left: 10px;
+}
+
+.rambu {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.rambuheader {
+    text-align: center;
+    background-color: #fffd7a;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 15px;
+}
+
+.entryexitdisplay {
+    display: flex;
+}
+
+.templateaccess {
+    width: 60px;
+}
+
+.templatekendaraan {
+    width: 67px;
+}
+
+.templateunit {
+    width: 50px;
+}
+
+/*Invoice*/
+.invoicetitle{
+    text-align: center;
+    font-size: 30px;
+}
+
+.invoice{
+    padding: 10px;
+}
+
+.invoiceheader{
+    display: flex;
+}
+
+.invoiceleft{
+    padding: 10px;
+    border: 3px solid #f0ec00;
+    width: 600px;
+}
+
+.invoiceright{
+    margin-left: 100px;
+    padding: 10px;
+    border: 3px solid #00bb09;
+    height: fit-content;
+    width: 360px;
+}
+
+.invoicehead{
+    width: 100%;
+}
+
+/*location detail*/
+.main-data {
+    display: flex;
+    width: fit-content;
+    border: 1px solid #757575;
+    padding: 10px 10px 10px 10px;
+    background-color: #ffffff;
+}
+
+
+.main-data-template {
+    font-family: "Times New Roman", Times, serif;
+}
+
+.vl {
+    border-left: 1px solid rgb(0, 0, 0);
+    height: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.card{
+    padding: 10px;
+    margin-left: 20px;
+    height: 300px;
+    overflow-y: scroll;
+}
+
+hr{
+    margin-top: 0px;
+}
