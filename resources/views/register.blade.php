@@ -20,8 +20,32 @@
                 <input class="inputloginregister" type="text" id="email" name="email" placeholder="Email" required>
             </div>
             <div class="input-block">
-                <input class="inputloginregister" type="password" id="password" name="password" placeholder="Password" required>
+                <input class="inputloginregister" type="password" id="password" name="password" placeholder="Password"
+                    required>
             </div>
+            <div class="input-block">
+                <select class="inputloginregister" name="role" id="" required>
+                    <option selected="true" disabled>Role</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Manajer">Manajer</option>
+                    <option value="Staff">Staff</option>
+                </select>
+            </div>
+            <div class="input-block">
+                <select class="inputloginregister" name="division" id="" required>
+                    <option selected="true" disabled>Divisi</option>
+                    <option value="IT">IT</option>
+                    <option value="Infrastructure">Infrastructure</option>
+                    <option value="Design">Design</option>
+                </select>
+            </div>
+            @if($errors->any())
+                <div class="error-message">
+                    @foreach ($errors->all() as $error)
+                        {{$error}}
+                    @endforeach
+                </div>
+            @endif
             <button class="submitbutton" type="submit">Register</button>
         </form>
     </div>

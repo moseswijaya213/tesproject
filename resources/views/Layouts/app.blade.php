@@ -11,12 +11,12 @@
 <body>
     <div class="sidebar">
         <div class="sidebarhead">
-            <img class="logoimg" src="logocpp.jpg" alt="" width="180px" height="90px">
+            <img class="logoimg" src="logocpp.jpg" alt="Logo CP" width="180px" height="90px">
             <div class="welcometxt">
-                {{ Auth::user()->name }} - Role
+                User {{ Auth::user()->name }} <br>
+                {{Auth::user()->role}} - {{Auth::user()->division}}
             </div>
         </div>
-
         <ul>
             <div>Menu</div>
             <hr>

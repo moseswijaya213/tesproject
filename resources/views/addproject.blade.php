@@ -64,32 +64,22 @@
             <div class="nextcolumn">
                 <div class="input-block">
                     <label>Cashflow</label><br>
-                    <select class="select1" name="cashflow" id="" required>
-                        <option selected="true" disabled>Pilih Berikut</option>
-                        <option value="Bank Mandiri">Bank Mandiri</option>
-                    </select>
+                    <input class="inputbox" type="text" name="cashflow" required>
                 </div>
                 <div class="input-block2">
                     <label>Jenis Kerjasama</label><br>
-                    <select class="select1" name="jenis_kerjasama" id="" required>
-                        <option selected="true" disabled>Pilih Berikut</option>
-                        <option value="Revenue Sharing">Revenue Sharing</option>
-                    </select>
+                    <input class="inputbox" type="text" name="jenis_kerjasama" required>
                 </div>
             </div>
 
             <div class="nextcolumn">
                 <div class="input-block">
                     <label>Status Asset</label><br>
-                    <select class="select1" name="status_asset" id="" required>
-                        <option selected="true" disabled>Pilih Berikut</option>
-                        <option value="Disewakan">Disewakan</option>
-                    </select>
+                    <input class="inputbox" type="text" name="status_asset" required>
                 </div>
                 <div class="input-block2">
                     <label>Project Category</label><br>
                     <select class="select1" name="project_category" id="" required>
-                        <option selected="true" disabled>Pilih Berikut</option>
                         <option value="Bronze">Bronze</option>
                         <option value="Silver">Silver</option>
                         <option value="Gold">Gold</option>

@@ -30,7 +30,7 @@
                     <input type="hidden" name="kantong[{{ $index }}][nama]" value="{{ $nama_kantong }}">
                     <div class="access-list" id="access-list-{{ $index }}">
                         <div class="access-item">
-                            <select name="kantong[{{ $index }}][access][0][jenis]" required>
+                            <select class="acc-select-box" name="kantong[{{ $index }}][access][0][jenis]" required>
                                 <option value="Car">Car</option>
                                 <option value="Motorbike">Motorbike</option>
                                 <option value="Box Truck">Box Truck</option>
@@ -61,7 +61,7 @@
             const accessCount = accessList.children.length;
 
             newAccessItem.innerHTML = `
-        <select name="kantong[${kantongIndex}][access][${accessCount}][jenis]" required>
+        <select class="acc-select-box" name="kantong[${kantongIndex}][access][${accessCount}][jenis]" required>
             <option value="Car">Car</option>
             <option value="Motorbike">Motorbike</option>
             <option value="Box Truck">Box Truck</option>

@@ -2,37 +2,80 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Project;
+use App\Models\Kantong;
+use App\Models\AccessKantong;
 use App\Models\ItemEntry;
 use App\Models\ItemExit;
 use App\Models\ItemAdmin;
 use App\Models\ItemRambu;
-use App\Models\Project;
-use App\Models\Kantong;
-use App\Models\AccessKantong;
-use Barryvdh\DomPDF\PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Session;
 
 class InvoiceController extends Controller
 {
-    public function generateInvoice(Request $request)
+    private function getInvoiceData($project_code)
     {
+        $project = Project::where('project_code', $project_code)->firstOrFail();
 
-        $projectCode = $projectCode ?? session('project_code');
-        $projectCode = session('project_code');
-        $projectName = session('project_name');
-
-        $kantongList = Kantong::where('project_code', $projectCode)->get();
-        $items = [
-            'entries' => ItemEntry::where('project_code', $projectCode)->get()->groupBy('nama_kantong'),
-            'exits' => ItemExit::where('project_code', $projectCode)->get()->groupBy('nama_kantong'),
-            'admins' => ItemAdmin::where('project_code', $projectCode)->get()->groupBy('nama_kantong'),
-            'rambu' => ItemRambu::where('project_code', $projectCode)->first(),
+        return [
+            'project' => $project,
+            'project_name' => $project->project_name,
+            'project_code' => $project->project_code,
+            'kantongs' => Kantong::where('project_code', $project->project_code)->get(),
+            'accessData' => AccessKantong::where('project_code', $project->project_code)->get(),
+            'itemEntries' => ItemEntry::where('project_code', $project->project_code)->get(),
+            'itemExits' => ItemExit::where('project_code', $project->project_code)->get(),
+            'itemAdmins' => ItemAdmin::where('project_code', $project->project_code)->get(),
+            'itemRambus' => ItemRambu::where('project_code', $project->project_code)->get(),
         ];
-
-        $data = compact('projectCode', 'projectName', 'kantongList', 'items');
-        $pdf = Pdf::loadView('invoice', $data);
-
-        return $pdf->download("invoice_{$projectCode}.pdf");
     }
 
+    public function show($project_code = null)
+    {
+        try {
+            if ($project_code) {
+                Session::put('project_code', $project_code);
+            }
+            else {
+                $project_code = Session::get('project_code');
+            }
+
+            if (!$project_code) {
+                return redirect()->route('projects')->with('error', 'Kode proyek tidak ditemukan.');
+            }
+
+            $data = $this->getInvoiceData($project_code);
+            return view('invoice', $data);
+
+        } catch (\Exception $e) {
+            \Log::error('Error in InvoiceController: ' . $e->getMessage());
+            return redirect()->route('projects')
+                ->with('error', 'Terjadi kesalahan saat memuat data invoice. ' . $e->getMessage());
+        }
+    }
+
+    public function generatePDF($project_code = null)
+    {
+        try {
+            if (!$project_code) {
+                $project_code = Session::get('project_code');
+            }
+
+            if (!$project_code) {
+                return redirect()->route('projects')
+                    ->with('error', 'Kode proyek tidak ditemukan untuk generate PDF.');
+            }
+
+            $data = $this->getInvoiceData($project_code);
+            $pdf = PDF::loadView('invoice', $data);
+
+            return $pdf->download('invoice-' . $project_code . '.pdf');
+
+        } catch (\Exception $e) {
+            \Log::error('Error generating PDF: ' . $e->getMessage());
+            return redirect()->back()
+                ->with('error', 'Gagal membuat PDF. ' . $e->getMessage());
+        }
+    }
 }

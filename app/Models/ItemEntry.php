@@ -13,9 +13,11 @@ class ItemEntry extends Model
 
     protected $fillable = [
         'id_entry',
-        'nama_kantong',
         'project_code',
+        'nama_kantong',
         'nama_item',
         'quantity',
+        'bukti_foto',
+        'status',
     ];
 }

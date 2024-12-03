@@ -17,5 +17,7 @@ class ItemAdmin extends Model
         'nama_kantong',
         'nama_item',
         'quantity',
+        'bukti_foto',
+        'status',
     ];
 }

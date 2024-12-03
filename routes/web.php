@@ -8,7 +8,6 @@ use App\Http\Controllers\AccessController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\TesController;
 use App\Http\Controllers\InvoiceController;
-use App\Http\Controllers\DetailProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +15,6 @@ use App\Http\Controllers\DetailProjectController;
 |--------------------------------------------------------------------------
 */
 
-// Authentication Routes
 Route::get('/', function () {
     return view('login');
 });
@@ -48,11 +46,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/additem/{projectCode?}', [ItemController::class, 'create'])->name('additem');
     Route::post('/additem', [ItemController::class, 'store']);
 
-    Route::get('/invoice', function () {
-        return view('invoice');
-    });
-    Route::post('/invoice', [ItemController::class, 'generateInvoice'])->name('invoice');
+    Route::get('/invoice/{project_code?}', [InvoiceController::class, 'show'])->name('invoice');
+    Route::get('/invoice/{project_code?}/pdf', [InvoiceController::class, 'generatePDF'])->name('invoice.pdf');
 
-    Route::get('/location/{project_name}', [DetailProjectController::class, 'showCurrentProject'])
+    Route::get('/location/{project_name}', [ItemController::class, 'showCurrentProject'])
         ->name('locationpage');
+    Route::put('/location/{project_name}/update-entry', [ItemController::class, 'updateItemEntry'])
+        ->name('update.item.entry');
+    Route::put('/location/{project_name}/update-exit', [ItemController::class, 'updateItemExit'])
+        ->name('update.item.exit');
+    Route::put('/location/{project_name}/update-admin', [ItemController::class, 'updateItemAdmin'])
+        ->name('update.item.admin');
+    Route::put('/location/{project_name}/update-rambu', [ItemController::class, 'updateItemRambu'])
+        ->name('update.item.rambu');
 });

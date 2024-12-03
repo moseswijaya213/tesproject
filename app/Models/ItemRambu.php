@@ -16,5 +16,7 @@ class ItemRambu extends Model
         'project_code',
         'nama_item',
         'quantity',
+        'bukti_foto',
+        'status',
     ];
 }

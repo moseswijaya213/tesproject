@@ -30,8 +30,6 @@ class KantongController extends Controller
         return redirect()->route('addacc');
     }
 
-
-    
     public function showAllProject()
     {
         $project_code = session('project_code');

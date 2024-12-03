@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('nama_kantong');
             $table->string('nama_item');
             $table->integer('quantity');
+            $table->string('status')->nullable();
+            $table->string('bukti_foto')->nullable();
             $table->timestamps();
 
             $table->foreign('project_code')->references('project_code')->on('p_project')->onDelete('cascade');

@@ -10,18 +10,15 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('p_project_admin', function (Blueprint $table) {
-            $table->id('id_admin');
+        Schema::create('tasks', function (Blueprint $table) {
+            $table->id('id_tasks');
             $table->string('project_code');
-            $table->string('nama_kantong');
-            $table->string('nama_item');
-            $table->integer('quantity');
-            $table->string('status')->nullable();
-            $table->string('bukti_foto')->nullable();
+            $table->string('task');
+            $table->binary('bukti_pekerjaan');
+            $table->string('value');
             $table->timestamps();
 
             $table->foreign('project_code')->references('project_code')->on('p_project')->onDelete('cascade');
-            $table->foreign(['project_code', 'nama_kantong'])->references(['project_code', 'nama_kantong'])->on('p_project_kantong')->onDelete('cascade');
         });
     }
 
@@ -30,6 +27,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('p_project_admin');
+        Schema::dropIfExists('divisions');
     }
 };

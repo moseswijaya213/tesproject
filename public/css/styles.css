@@ -18,19 +18,10 @@ body {
     margin-bottom: 10px;
 }
 
-.flex-container{
-    display: flex;
-}
-
 .inputloginregister {
     width: 400px;
     height: 35px;
     margin-bottom: 10px;
-}
-
-select {
-    width: 300px;
-    height: 30px;
 }
 
 /*login register page*/
@@ -212,7 +203,9 @@ select {
 }
 
 .acc-select-box {
-    width: 150px;
+    margin-top: 5px;
+    width: 200px;
+    height: 37px;
 }
 
 .remove-access {
@@ -230,9 +223,10 @@ select {
     text-align: center;
 }
 
-.addaccessbtn {
-    width: 45px;
+.add-access {
     font-size: 15px;
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 .acc-top {
@@ -361,26 +355,30 @@ select {
 }
 
 /*Invoice*/
-.invoicetitle{
+.invoicetitle {
     text-align: center;
-    font-size: 30px;
 }
 
-.invoice{
+.invoice {
+    font-size: 10px;
     padding: 10px;
 }
 
-.invoiceheader{
+.submission-date {
+    width: 110px;
+}
+
+.invoiceheader {
     display: flex;
 }
 
-.invoiceleft{
+.invoiceleft {
     padding: 10px;
     border: 3px solid #f0ec00;
-    width: 600px;
+    width: 530px;
 }
 
-.invoiceright{
+.invoiceright {
     margin-left: 100px;
     padding: 10px;
     border: 3px solid #00bb09;
@@ -388,24 +386,27 @@ select {
     width: 360px;
 }
 
-.invoicehead{
+.invoicehead {
     width: 100%;
 }
 
-/*location detail*/
-.main-data {
+.invoicee {
+    height: 17px;
     display: flex;
-    width: fit-content;
-    border: 1px solid #757575;
-    padding: 10px 10px 10px 10px;
-    background-color: #ffffff;
+    align-items: center;
 }
 
-
-.main-data-template {
-    font-family: "Times New Roman", Times, serif;
+.invoicee input[type="checkbox"] {
+    margin-right: 8px;
+    vertical-align: middle;
 }
 
+.invoicee label {
+    margin: 0;
+    vertical-align: middle;
+}
+
+/*location detail*/
 .vl {
     border-left: 1px solid rgb(0, 0, 0);
     height: auto;
@@ -413,13 +414,18 @@ select {
     margin-right: 10px;
 }
 
-.card{
-    padding: 10px;
-    margin-left: 20px;
-    height: 300px;
-    overflow-y: scroll;
+.col-3{
+    width: 160px;
 }
 
-hr{
+.card {
+    padding: 10px;
+}
+
+hr {
     margin-top: 0px;
+}
+
+.btn-warning{
+    font-size: 12px;
 }
