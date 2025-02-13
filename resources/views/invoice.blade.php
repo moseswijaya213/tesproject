@@ -7,6 +7,13 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        @media print {
+            .submitbutton {
+                display: none;
+            }
+        }
+    </style>
 </head>
 
 <body class="invoice">
@@ -79,8 +86,8 @@
                             <td>
                                 @foreach ($Access as $access)
                                     Access {{ $access->jenis_kendaraan }}
-                                    Entry [{{ $access->entry_access }} Unit]
-                                    Exit [{{ $access->exit_access }} Unit] <br>
+                                    {{ $access->kategori }}
+                                    [{{ $access->quantity }} Unit] <br>
                                 @endforeach
                             </td>
                         </tr>
@@ -127,14 +134,6 @@
                         @endforeach
 
                         @if ($itemAdmin->where('nama_kantong', $kantong->nama_kantong)->where('project_code', $project_code) == null)
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
                         @else
                             <tr>
                                 <td></td>
@@ -166,15 +165,15 @@
                             @endforeach
                         @endif
 
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
             @endforeach
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
 
             <tr>
                 <td></td>
@@ -203,6 +202,6 @@
         </tbody>
     </table>
 </body>
-<button class="submitbutton" onclick="window.print()">Download PDF</button>
+<button class="submitbutton btn" onclick="window.print()">Download PDF</button>
 
 </html>

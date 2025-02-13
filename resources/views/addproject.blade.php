@@ -14,87 +14,103 @@
     @extends('Layouts.app')
 
     @section('content')
-    <h1 class="bolder">New Project Data</h1>
-    <hr>
-    <div class="mainform">
-        <form class="mainformm" method="post">
-            @csrf
-            <div class="form1">
-                <h3>Project Information Details</h3>
-                <hr>
-                <div class="nextcolumn">
-                    <div class="input-block">
-                        <label>Nama Project </label><br>
-                        <input class="inputbox" type="text" name="project_name" placeholder="" required>
-                    </div>
-                    <div class="input-block2">
-                        <label>Perusahaan </label><br>
-                        <input class="inputbox" type="text" name="perusahaan" required>
-                    </div>
-                </div>
 
-                <div class="nextcolumn">
-                    <div class="input-block">
-                        <label>Project Code</label><br>
-                        <input class="inputbox" type="text" name="project_code" placeholder="" required>
-                    </div>
-                    <div class="input-block2">
-                        <label>Bidang Usaha</label><br>
-                        <input class="inputbox" type="text" name="bidang_usaha" required>
-                    </div>
-                </div>
-
-                <div class="input-block">
-                    <label>Alamat</label><br>
-                    <textarea class="textarea" name="alamat" id="" required></textarea>
-                </div>
-            </div>
-
-            <div class="nextcolumn">
-                <div class="input-block">
-                    <label>Target Live Project</label><br>
-                    <input class="inputbox" type="date" name="targetliveproject" required>
-                </div>
-                <div class="input-block2">
-                    <label>Sistem Operasional</label><br>
-                    <input class="inputbox" type="text" name="sistem_operasional" required>
-                </div>
-            </div>
-
-            <div class="nextcolumn">
-                <div class="input-block">
-                    <label>Cashflow</label><br>
-                    <input class="inputbox" type="text" name="cashflow" required>
-                </div>
-                <div class="input-block2">
-                    <label>Jenis Kerjasama</label><br>
-                    <input class="inputbox" type="text" name="jenis_kerjasama" required>
-                </div>
-            </div>
-
-            <div class="nextcolumn">
-                <div class="input-block">
-                    <label>Status Asset</label><br>
-                    <input class="inputbox" type="text" name="status_asset" required>
-                </div>
-                <div class="input-block2">
-                    <label>Project Category</label><br>
-                    <select class="select1" name="project_category" id="" required>
-                        <option value="Bronze">Bronze</option>
-                        <option value="Silver">Silver</option>
-                        <option value="Gold">Gold</option>
-                        <option value="Platinum">Platinum</option>
-                    </select>
-                </div>
-            </div>
-            <div class="input-block">
-                <label>PIC</label><br>
-                <input class="inputbox" type="text" name="pic" required>
-            </div>
-
-            <button class="submitbutton" type="submit">Submit</button>
-        </form>
+    <div class="homeheader">
+        <h1 class="bolder">New Project Data</h1>
     </div>
+
+    <main>
+        <div class="mainform">
+            <form class="mainformm shadow" method="post" action="{{route('addproject')}}" style="width: 1000px;">
+                @csrf
+                <div class="form1">
+                    <h3 class="fw-bold">Project Information Details</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            <label>Nama Project </label><br>
+                            <input class="form-control" type="text" name="project_name" placeholder="" required>
+                        </div>
+                        <div class="col">
+                            <label>Perusahaan </label><br>
+                            <input class="form-control" type="text" name="perusahaan" required>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <label>Project Code</label><br>
+                            <input class="form-control" type="text" name="project_code" placeholder="" required>
+                        </div>
+                        <div class="col">
+                            <label>Bidang Usaha</label><br>
+                                <select class="form-select" id="test" name="bidang_usaha" required>
+                                    <option value="Office">Office</option>
+                                    <option value="Pelabuhan">Pelabuhan</option>
+                                    <option value="Mall">Mall</option>
+                                    <option value="Retail">Retail</option>
+                                    <option value="Bandara">Bandara</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col">
+                            <label>Alamat</label><br>
+                            <textarea class="form-control" name="alamat" id="" required></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col">
+                        <label>Target Live Project</label><br>
+                        <input class="form-control" type="date" name="targetliveproject" required>
+                    </div>
+                    <div class="col">
+                        <label>Sistem Operasional</label><br>
+                        <input class="form-control" type="text" name="sistem_operasional" required>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col">
+                        <label>Cashflow</label><br>
+                        <input class="form-control" type="text" name="cashflow" required>
+                    </div>
+                    <div class="col">
+                        <label>Jenis Kerjasama</label><br>
+                        <input class="form-control" type="text" name="jenis_kerjasama" required>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col">
+                        <label>Status Asset</label><br>
+                        <input class="form-control" type="text" name="status_asset" required>
+                    </div>
+                    <div class="col">
+                        <label>Project Category</label><br>
+                        <select class="form-select" name="project_category" id="" required>
+                            <option value="Bronze">Bronze</option>
+                            <option value="Silver">Silver</option>
+                            <option value="Gold">Gold</option>
+                            <option value="Platinum">Platinum</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col">
+                        <label>PIC</label><br>
+                        <input class="form-control" type="text" name="pic" required>
+                    </div>
+                </div>
+
+                <button class="btn submitbutton mt-3" type="submit">Submit</button>
+            </form>
+        </div>
+    </main>
     @endsection
 </body>
 

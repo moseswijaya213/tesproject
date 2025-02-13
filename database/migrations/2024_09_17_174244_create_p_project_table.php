@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(){
     Schema::create('p_project', function (Blueprint $table) {
         $table->id('id_project');
-        $table->string('project_name')->nullable();
+        $table->string('project_name')->unique();
         $table->string('project_code')->unique();
         $table->string('perusahaan')->nullable();
         $table->string('pic')->nullable();
@@ -24,6 +24,7 @@ return new class extends Migration
         $table->string('jenis_kerjasama')->nullable();
         $table->string('status_asset')->nullable();
         $table->string('project_category')->nullable();
+        $table->string('status')->nullable();
         $table->timestamps();
     });
 }

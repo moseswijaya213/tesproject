@@ -18,12 +18,11 @@ class AccessController extends Controller
         ]);
     }
 
-    public function newAccess(Request $request)
+    public function newAcc(Request $request)
     {
         $project_code = $request->project_code;
 
         session(['project_code' => $project_code]);
-
         foreach ($request->kantong as $kantong) {
             foreach ($kantong['access'] as $access) {
                 AccessKantong::create([

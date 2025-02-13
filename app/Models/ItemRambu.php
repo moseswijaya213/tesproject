@@ -11,6 +11,8 @@ class ItemRambu extends Model
 
     protected $table = 'p_project_rambu';
 
+    protected $primaryKey = 'id_rambu';
+
     protected $fillable = [
         'id_rambu',
         'project_code',
@@ -19,4 +21,9 @@ class ItemRambu extends Model
         'bukti_foto',
         'status',
     ];
+
+    public function projectRambu()
+    {
+        return $this->belongsTo(Project::class, 'project_code', 'project_code');
+    }
 }

@@ -11,6 +11,8 @@ class ItemExit extends Model
 
     protected $table = 'p_project_exit';
 
+    protected $primaryKey = 'id_exit';
+
     protected $fillable = [
         'id_exit',
         'project_code',
@@ -20,6 +22,9 @@ class ItemExit extends Model
         'bukti_foto',
         'status',
     ];
-
+    public function projectExit()
+    {
+        return $this->belongsTo(Project::class, 'project_code', 'project_code');
+    }
     
 }

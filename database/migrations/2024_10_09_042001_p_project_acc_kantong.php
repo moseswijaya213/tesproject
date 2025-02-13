@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('p_project_acc_kantong', function (Blueprint $table) {
-            $table->id('id_acc');
+            $table->id('id_access');
             $table->string('project_code');
             $table->string('nama_kantong')->nullable();
             $table->string('jenis_kendaraan')->nullable();
@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->timestamps();
 
             $table->foreign('project_code')->references('project_code')->on('p_project')->onDelete('cascade');
-            $table->foreign(['project_code', 'nama_kantong'])->references(['project_code', 'nama_kantong'])->on('p_project_kantong')->onDelete('cascade');
+            $table->foreign(['project_code', 'nama_kantong'])->references(['project_code','nama_kantong',])->on('p_project_kantong')->onDelete('cascade');
         });
 
     }

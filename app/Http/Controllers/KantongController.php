@@ -27,10 +27,10 @@ class KantongController extends Controller
         session(['kantong_names' => $kantongNames]);
         session(['project_code' => $request->project_code]);
 
-        return redirect()->route('addacc');
+        return redirect()->route('addaccess');
     }
 
-    public function showAllProject()
+    public function showCurrentProject()
     {
         $project_code = session('project_code');
 

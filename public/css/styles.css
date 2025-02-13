@@ -2,10 +2,24 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: rgb(247, 251, 255);
+}
+
+main {
+    padding: 20px;
 }
 
 .bolder {
     font-weight: bold;
+}
+
+.homeheader {
+    background-color: white;
+    padding-left: 20px;
+    height: 80px;
+    border-bottom: 1px solid rgb(235, 235, 235);
+    display: flex;
+    place-items: center;
 }
 
 .numberbox {
@@ -15,12 +29,6 @@ body {
 .error-message {
     color: rgb(255, 0, 0);
     font-size: 10px;
-    margin-bottom: 10px;
-}
-
-.inputloginregister {
-    width: 400px;
-    height: 35px;
     margin-bottom: 10px;
 }
 
@@ -39,15 +47,13 @@ body {
     text-align: center;
     border-style: solid;
     border-width: 1px;
-    border-color: rgb(0, 0, 0);
-    border-radius: 5px;
+    border-color: rgb(211, 211, 211);
+    border-radius: 10px;
 }
 
 .submitbutton {
     background-color: rgb(5, 76, 128);
     color: #ffffff;
-    margin-top: 5px;
-    margin-bottom: 15px;
 }
 
 /*sidebar*/
@@ -95,28 +101,82 @@ body {
     margin-top: -10px;
 }
 
-.dropdown {
-    position: relative;
-}
-
-.dropdown-content {
-    display: none;
-    z-index: 1;
-    font-size: 19px;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
 .content {
-    flex: 1;
     margin-left: 200px;
-    padding: 20px;
 }
 
 .btmpage {
     margin-top: 10px;
+}
+
+/*dashboard*/
+.chart-label{
+    width: 90px;
+}
+
+.projectlabel {
+    width: auto;
+    height: 90px;
+    color: white;
+    border: 1px solid rgb(235, 235, 235);
+    border-radius: 8px;
+    display: grid;
+    align-items: center;
+}
+
+.project-label {
+    margin-left: 20px;
+    place-items: center;
+}
+
+.projecttlabel {
+    font-size: 30px;
+}
+
+.projecttlabel1 {
+    font-size: 17px;
+}
+
+.wrapping {
+    justify-content: center;
+    align-items: center;
+}
+
+.progress-container {
+    text-align: center;
+    width: 110px;
+    height: 100px;
+    position: relative;
+}
+
+.progress-circle {
+    width: 100%;
+    height: 100%;
+    background: conic-gradient(#3b82f6 calc(var(--percent) * 1%), #f1f1f1 0%);
+    border-radius: 50%;
+    position: relative;
+}
+
+.progress-circle::before {
+    content: "";
+    width: 80%;
+    height: 80%;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1em;
+    font-weight: bold;
+    color: #000;
 }
 
 /*add project page*/
@@ -134,37 +194,6 @@ body {
     border-radius: 5px;
 }
 
-.nextcolumn {
-    display: flex;
-}
-
-.input-block {
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-.input-block2 {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    margin-left: 50px;
-}
-
-.inputbox {
-    width: 400px;
-    height: 40px;
-    overflow-y: hidden;
-}
-
-.textarea {
-    width: 850px;
-    height: 80px;
-}
-
-.select1 {
-    width: 400px;
-    height: 40px;
-}
-
 .newprojectnotif {
     margin-top: 5px;
 }
@@ -174,10 +203,6 @@ body {
 .form-kantong {
     text-align: center;
     border: black 1px solid;
-}
-
-.input-block4 {
-    padding-top: 5px;
 }
 
 .labelacc {
@@ -196,31 +221,10 @@ body {
 
 .accformm {
     background: #ffffff;
-    width: auto;
+    width: 700px;
     padding: 20px;
     border: 1px solid rgb(211, 211, 211);
     border-radius: 5px;
-}
-
-.acc-select-box {
-    margin-top: 5px;
-    width: 200px;
-    height: 37px;
-}
-
-.remove-access {
-    background-color: rgb(165, 0, 0);
-    color: #ffffff;
-    margin-top: 5px;
-    font-size: 15px;
-}
-
-.content-end {
-    text-align: end;
-}
-
-.addaccproperty {
-    text-align: center;
 }
 
 .add-access {
@@ -238,9 +242,6 @@ body {
 }
 
 /*add kantong blade*/
-.addkantongparkir {
-    text-align: center;
-}
 
 .deletebtn {
     background-color: rgb(165, 0, 0);
@@ -256,7 +257,11 @@ body {
 }
 
 .iteminput {
-    width: 35px;
+    width: 45px;
+}
+
+.numlabel {
+    width: 15px;
 }
 
 .itemkantongform {
@@ -271,6 +276,12 @@ body {
     background-color: #ffffff;
     width: max-content;
     font-size: 10px;
+}
+
+.kategori-form {
+    height: 500px;
+    overflow-y: scroll;
+    margin-bottom: 10px;
 }
 
 .kantong-item {
@@ -296,17 +307,9 @@ body {
     font-size: 25px;
 }
 
-.item-form-content {
-    display: flex;
-}
-
 .judulkantongitem {
     font-size: 20px;
-}
-
-.remove-item {
-    background-color: rgb(165, 0, 0);
-    color: #ffffff;
+    overflow-y: auto;
 }
 
 .itembutton {
@@ -316,6 +319,8 @@ body {
     margin-top: 10px;
     margin-left: 130px;
     margin-bottom: 10px;
+    height: 30px;
+    width: 130px;
 }
 
 .formrambu {
@@ -336,22 +341,6 @@ body {
     padding-top: 5px;
     padding-bottom: 5px;
     font-size: 15px;
-}
-
-.entryexitdisplay {
-    display: flex;
-}
-
-.templateaccess {
-    width: 60px;
-}
-
-.templatekendaraan {
-    width: 67px;
-}
-
-.templateunit {
-    width: 50px;
 }
 
 /*Invoice*/
@@ -407,15 +396,36 @@ body {
 }
 
 /*location detail*/
-.vl {
-    border-left: 1px solid rgb(0, 0, 0);
-    height: auto;
-    margin-left: 10px;
-    margin-right: 10px;
+.location-label{
+    width: 600px; height: 180px; overflow-y: scroll; overflow-x: hidden;
 }
 
-.col-3{
-    width: 160px;
+.success-label {
+    background-color: #d1f4e0;
+    height: 30px;
+    color: #12a150;
+    width: 100px;
+    justify-content: center;
+    display: flex;
+}
+
+.ongoing-label {
+    background-color: #fbf982;
+    color: #e0b415;
+    height: 30px;
+    width: 100px;
+    justify-content: center;
+    display: flex;
+}
+
+.newproject-label {
+    background-color: #fdd0df;
+    height: 30px;
+    font-size: 14px;
+    color: #f5417f;
+    width: 100px;
+    justify-content: center;
+    display: flex;
 }
 
 .card {
@@ -426,6 +436,11 @@ hr {
     margin-top: 0px;
 }
 
-.btn-warning{
+.btn-warning {
     font-size: 12px;
+}
+
+.alert {
+    width: 100px;
+    text-align: center;
 }

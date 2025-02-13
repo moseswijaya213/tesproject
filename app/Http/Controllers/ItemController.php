@@ -11,6 +11,7 @@ use App\Models\ItemRambu;
 use App\Models\Project;
 use App\Models\Kantong;
 use App\Models\AccessKantong;
+use App\Models\Task;
 use Barryvdh\DomPDF\PDF;
 
 class ItemController extends Controller
@@ -112,6 +113,30 @@ class ItemController extends Controller
         $itemExits = ItemExit::where('project_code', $project->project_code)->get();
         $itemAdmins = ItemAdmin::where('project_code', $project->project_code)->get();
         $itemRambus = ItemRambu::where('project_code', $project->project_code)->get();
+        $task = Task::where('project_code', $project->project_code)->get();
+
+        $countitemEntries = ItemEntry::where('project_code', $project->project_code)->count();
+        $countitemExits = ItemExit::where('project_code', $project->project_code)->count();
+        $countitemAdmins = ItemAdmin::where('project_code', $project->project_code)->count();
+        $countitemRambus = ItemRambu::where('project_code', $project->project_code)->count();
+
+        $countitemEntriesSesuai = ItemEntry::where('project_code', $project->project_code)->where('status', 'Sesuai')->count();
+        $countitemExitsSesuai = ItemExit::where('project_code', $project->project_code)->where('status', 'Sesuai')->count();
+        $countitemAdminsSesuai = ItemAdmin::where('project_code', $project->project_code)->where('status', 'Sesuai')->count();
+        $countitemRambusSesuai = ItemRambu::where('project_code', $project->project_code)->where('status', 'Sesuai')->count();
+
+        $totalItemCount = $countitemEntries + $countitemExits + $countitemAdmins + $countitemRambus;
+        $totalItemSesuaiCount = $countitemEntriesSesuai + $countitemExitsSesuai + $countitemAdminsSesuai + $countitemRambusSesuai;
+
+        $countTasksProject = $task->count();
+        $countFinishedTasksProject = $task->whereIn('status', ['Tidak ada pekerjaan', 'Finished'])->count();
+        $totalprogress = 0;
+        $progressDisplay = '0,00';
+
+        if ($countFinishedTasksProject != 0 || $countTasksProject != 0) {
+            $totalprogress = ($countFinishedTasksProject / $countTasksProject) * 100;
+            $progressDisplay = number_format($totalprogress, 2, ',', '');
+        }
 
         return view('locationpage', [
             'project_name' => $project->project_name,
@@ -132,33 +157,133 @@ class ItemController extends Controller
             'itemExits' => $itemExits,
             'itemAdmins' => $itemAdmins,
             'itemRambus' => $itemRambus,
+            'task' => $task,
+            'countTasksProject' => $countTasksProject,
+            'countFinishedTasksProject' => $countFinishedTasksProject,
+            'totalprogress' => $totalprogress,
+            'progressDisplay' => $progressDisplay,
+            'countitemEntries' => $countitemEntries,
+            'countitemExits' => $countitemExits,
+            'countitemAdmins' => $countitemAdmins,
+            'countitemRambus' => $countitemRambus,
+            'totalItemCount' => $totalItemCount,
+            'totalItemSesuaiCount' => $totalItemSesuaiCount
         ]);
     }
 
     public function updateItemEntry(Request $request)
     {
         $validatedData = $request->validate([
-            'id_entry'=>'required|id',
-            'nama_item' => 'required|string|max:255',
-            'quantity' => 'required|integer|min:1',
-            'bukti_foto' => 'nullable|string',
-            'status' => 'nullable|string|max:255',
+            'id_entry' => 'required',
+            'nama_item' => 'required|string',
+            'quantity' => 'required|integer',
+            'bukti_foto' => 'required|file',
+            'status' => 'required|string',
         ]);
 
-        $item = ItemEntry::findOrFail($id_entry);
+        $itemEntry = ItemEntry::where('id_entry', $request->id_entry)->first();
 
-        $item->nama_item = $validatedData['nama_item'];
-        $item->quantity = $validatedData['quantity'];
-        $item->status = $validatedData['status'] ?? $item->status;
-
-        if ($request->hasFile('bukti_foto')) {
-            $uploadedFile = $request->file('bukti_foto');
-            $filePath = $uploadedFile->store('uploads/bukti_foto', 'public');
-            $item->bukti_foto = $filePath;
+        if (!$itemEntry) {
+            return redirect()->back()->withErrors('Item Entry tidak ditemukan.');
         }
 
-        $item->save();
+        $filePath = $request->file('bukti_foto')->store('bukti_foto', 'public');
+        $fileName = basename($filePath);
 
-        return redirect()->back()->with('success', 'Item updated successfully.');
+        $itemEntry->update([
+            'nama_item' => $request->nama_item,
+            'quantity' => $request->quantity,
+            'bukti_foto' => $fileName,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->back()->with('success', 'Item Entry berhasil diperbarui.');
+    }
+
+    public function updateItemExit(Request $request)
+    {
+        $validatedData = $request->validate([
+            'id_exit' => 'required',
+            'nama_item' => 'required|string',
+            'quantity' => 'required|integer',
+            'bukti_foto' => 'required|file',
+            'status' => 'required|string',
+        ]);
+
+        $itemExit = ItemExit::where('id_exit', $request->id_exit)->first();
+
+        if (!$itemExit) {
+            return redirect()->back()->withErrors('Item Exit tidak ditemukan.');
+        }
+
+        $filePath = $request->file('bukti_foto')->store('bukti_foto', 'public');
+        $fileName = basename($filePath);
+
+        $itemExit->update([
+            'nama_item' => $request->nama_item,
+            'quantity' => $request->quantity,
+            'bukti_foto' => $fileName,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->back()->with('success', 'Item Exit berhasil diperbarui.');
+    }
+
+    public function updateItemAdmin(Request $request)
+    {
+        $validatedData = $request->validate([
+            'id_admin' => 'required',
+            'nama_item' => 'required|string',
+            'quantity' => 'required|integer',
+            'bukti_foto' => 'required|file',
+            'status' => 'required|string',
+        ]);
+
+        $itemAdmin = ItemAdmin::where('id_admin', $request->id_admin)->first();
+
+        if (!$itemAdmin) {
+            return redirect()->back()->withErrors('Item Admin tidak ditemukan.');
+        }
+
+        $filePath = $request->file('bukti_foto')->store('bukti_foto', 'public');
+        $fileName = basename($filePath);
+
+        $itemAdmin->update([
+            'nama_item' => $request->nama_item,
+            'quantity' => $request->quantity,
+            'bukti_foto' => $fileName,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->back()->with('success', 'Item Admin berhasil diperbarui.');
+    }
+
+    public function updateItemRambu(Request $request)
+    {
+        $validatedData = $request->validate([
+            'id_rambu' => 'required',
+            'nama_item' => 'required|string',
+            'quantity' => 'required|integer',
+            'bukti_foto' => 'required|file',
+            'status' => 'required|string',
+        ]);
+
+        $itemRambu = ItemRambu::where('id_rambu', $request->id_rambu)->first();
+
+        if (!$itemRambu) {
+            return redirect()->back()->withErrors('Item Rambu tidak ditemukan.');
+        }
+
+        $filePath = $request->file('bukti_foto')->store('bukti_foto', 'public');
+        $fileName = basename($filePath);
+
+        $itemRambu->update([
+            'nama_item' => $request->nama_item,
+            'quantity' => $request->quantity,
+            'bukti_foto' => $fileName,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->back()->with('success', 'Item Rambu berhasil diperbarui.');
     }
 }

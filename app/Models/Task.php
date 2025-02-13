@@ -5,24 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ItemEntry extends Model
+class Task extends Model
 {
     use HasFactory;
 
-    protected $table = 'p_project_entry';
-
-    protected $primaryKey = 'id_entry';
-
+    protected $table = 'tasks';
+    protected $primaryKey = 'id_task';
     protected $fillable = [
-        'id_entry',
+        'id_task',
         'project_code',
+        'nama_access',
         'nama_kantong',
-        'nama_item',
-        'quantity',
-        'bukti_foto',
+        'nama_gate',
+        'task',
+        'bukti_pekerjaan',
         'status',
     ];
-    public function projectEntry()
+    public function project()
     {
         return $this->belongsTo(Project::class, 'project_code', 'project_code');
     }

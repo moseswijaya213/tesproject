@@ -11,6 +11,8 @@ class ItemAdmin extends Model
 
     protected $table = 'p_project_admin';
 
+    protected $primaryKey = 'id_admin';
+
     protected $fillable = [
         'id_admin',
         'project_code',
@@ -20,4 +22,8 @@ class ItemAdmin extends Model
         'bukti_foto',
         'status',
     ];
+    public function projectAdmin()
+    {
+        return $this->belongsTo(Project::class, 'project_code', 'project_code');
+    }
 }

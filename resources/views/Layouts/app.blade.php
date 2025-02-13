@@ -11,28 +11,18 @@
 <body>
     <div class="sidebar">
         <div class="sidebarhead">
-            <img class="logoimg" src="logocpp.jpg" alt="Logo CP" width="180px" height="90px">
+            <img class="logoimg" src="{{ asset('logocpp.jpg') }}" alt="Logo CP" width="180px" height="90px">
             <div class="welcometxt">
-                User {{ Auth::user()->name }} <br>
-                {{Auth::user()->role}} - {{Auth::user()->division}}
+                User {{ Auth::user()->name }}
             </div>
         </div>
         <ul>
             <div>Menu</div>
             <hr>
-            <li class="topmenu"><a href="home">Dashboard</a></li>
-            <li class="dropdown">
-                <a href="">Manage Projects
-                    <ul class="dropdown-content">
-                        <li><a href="addproject">Add New Project</a></li>
-                        <li><a href="addkantong">Add Kantong Parkir</a></li>
-                        <li><a href="addacc">Add Access Kantong Parkir</a></li>
-                        <li><a href="additem">Add Item Project</a></li>
-                    </ul>
-                </a>
-            </li>
-            <li><a href="projects">Projects</a></li>
-            <li><a href="register">Regist User</a></li>
+            <li class="topmenu"><a href="/home">Dashboard</a></li>
+            <li><a href="/addproject">Add New Project</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/register">Regist User</a></li>
         </ul>
     </div>
 
